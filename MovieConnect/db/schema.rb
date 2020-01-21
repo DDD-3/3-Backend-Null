@@ -13,18 +13,18 @@
 ActiveRecord::Schema.define(version: 2020_01_17_110001) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer "post_id_id"
-    t.integer "user_id_id"
+    t.integer "post_id"
+    t.integer "user_id"
     t.string "content"
     t.integer "like_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id_id"], name: "index_comments_on_post_id_id"
-    t.index ["user_id_id"], name: "index_comments_on_user_id_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "user_id_id"
+    t.integer "user_id"
     t.string "movie_id"
     t.string "movie_name"
     t.string "movie_thumb"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_01_17_110001) do
     t.integer "like_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id_id"], name: "index_posts_on_user_id_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_01_17_110001) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "comments", "post_ids"
-  add_foreign_key "comments", "user_ids"
-  add_foreign_key "posts", "user_ids"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "posts", "users"
 end
