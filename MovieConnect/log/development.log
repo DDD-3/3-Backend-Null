@@ -1202,3 +1202,74 @@ FOREIGN KEY ("user_id")
   [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserMovieLikeCount (20200123091045)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "users" ADD "movie_like_count" integer DEFAULT 0[0m
+  [1m[36mprimary::SchemaMigration Create (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200123091045"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/movies/0" for ::1 at 2020-01-23 18:32:48 +0900
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MoviesController#show as */*
+  Parameters: {"id"=>"0"}
+Completed 200 OK in 11ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 321)
+
+
+Started GET "/searchMovie/0" for ::1 at 2020-01-23 18:34:14 +0900
+Processing by MoviesController#search as */*
+  Parameters: {"title"=>"0"}
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms | Allocations: 2118)
+
+
+  
+NameError (uninitialized constant MoviesController::MOVIE_API_KEY):
+  
+app/controllers/movies_controller.rb:14:in `search'
+Started GET "/searchMovie/0" for ::1 at 2020-01-23 18:39:07 +0900
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by MoviesController#search as */*
+  Parameters: {"title"=>"0"}
+Completed 200 OK in 1302ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 1919)
+
+
+Started GET "/searchMovie/0" for ::1 at 2020-01-23 18:39:52 +0900
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/Users/seoseungduk/Documents/Projects/3-Backend-Null/MovieConnect/app/controllers/movies_controller.rb:14: syntax error, unexpected '}', expecting =>
+...    ServiceKey: {MOVIE_API_KEY}
+...                              ^):
+  
+app/controllers/movies_controller.rb:14: syntax error, unexpected '}', expecting =>
+app/controllers/movies_controller.rb:14: syntax error, unexpected '}', expecting =>
+app/controllers/movies_controller.rb:14: syntax error, unexpected '}', expecting =>
+Started GET "/searchMovie/0" for ::1 at 2020-01-23 18:58:11 +0900
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MoviesController#search as */*
+  Parameters: {"title"=>"0"}
+Completed 200 OK in 403ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 2117)
+
+
+Started GET "/searchMovie/joket" for ::1 at 2020-01-23 18:58:36 +0900
+Processing by MoviesController#search as */*
+  Parameters: {"title"=>"joket"}
+Completed 200 OK in 209ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1120)
+
+
+Started GET "/searchMovie/joker" for ::1 at 2020-01-23 18:58:37 +0900
+Processing by MoviesController#search as */*
+  Parameters: {"title"=>"joker"}
+Completed 200 OK in 337ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1126)
+
+
+Started GET "/searchMovie/%EC%A1%B0%EC%BB%A4" for ::1 at 2020-01-23 18:59:02 +0900
+Processing by MoviesController#search as HTML
+  Parameters: {"title"=>"조커"}
+Completed 200 OK in 1018ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1211)
+
+
