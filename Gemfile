@@ -58,3 +58,6 @@ gem 'rest-client'
 
 # configure gem
 gem 'figaro'
+
+# for google oauth2.0
+gem 'omniauth-google-oauth2'
