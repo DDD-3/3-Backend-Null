@@ -30,6 +30,13 @@ class MoviesController < ApplicationController
     end
 
     def boxoffice
-        # 매일 24시에 박스오피스가 업데이트 되고 오전동안 계속 수정되기 때문에 매일 12시, 24시에 박스오피스 정보를 업데이트 하고, 해당 정보를 뿌려주도록 함
+        # TODO : 매일 24시에 박스오피스가 업데이트 되고 오전동안 계속 수정되기 때문에 매일 12시, 24시에 박스오피스 정보를 업데이트 하고, 해당 정보를 뿌려주도록 함
+        #        또한 영화 검색과 통일된 형식에 맞게 보내줄 수 있도록 kmdb에 재검색 또는 가공된 형태의 json형식으로 보내줘야 함
+        response = RestClient.get ENV["BOXOFFICE_ENDPOINT"], params: {
+            key: ENV["BOXOFFICE_API_KEY"],
+            targetDt: Date.yesterday.to_s(:number)
+        }
+
+        render json: response
     end
 end
