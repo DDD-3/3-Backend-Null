@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_113233) do
+ActiveRecord::Schema.define(version: 2020_02_10_104714) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_01_27_113233) do
     t.string "movie_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_follow_movies_on_movie_id"
+    t.index ["user_id", "movie_id"], name: "index_follow_movies_on_user_id_and_movie_id", unique: true
     t.index ["user_id"], name: "index_follow_movies_on_user_id"
   end
 

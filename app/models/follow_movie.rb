@@ -1,0 +1,2 @@
+class FollowMovie < ApplicationRecord
+end

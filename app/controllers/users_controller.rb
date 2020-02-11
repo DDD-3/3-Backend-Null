@@ -10,4 +10,15 @@ class UsersController < ApplicationController
 
     def destroy
     end
+
+    def follow_movies
+        list = FollowMovie.where(user_id: params[:user_id])
+        if list.present?
+            render json: list
+        else
+            render json: {
+                status: "null"
+            }
+        end
+    end
 end
